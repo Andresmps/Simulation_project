@@ -74,7 +74,7 @@ altNames = None
 def YOLO():
     global metaMain, netMain, altNames
     configPath = "./cfg/yolov4.cfg"
-    weightPath = "./yolov4.weights"
+    weightPath = "./data/weights/yolov4.weights"
     metaPath = "./cfg/coco.data"
     if not os.path.exists(configPath):
         raise ValueError("Invalid config path `" +
@@ -110,13 +110,13 @@ def YOLO():
                     pass
         except Exception:
             pass
-    cap = cv2.VideoCapture("./Input/test5.mp4")
+    cap = cv2.VideoCapture(".data/Input/OxfordTownCenter.mp4")
     frame_width = int(cap.get(3))
     frame_height = int(cap.get(4))
     new_height, new_width = frame_height // 2, frame_width // 2
 
     out = cv2.VideoWriter(
-        "./Demo/test5_output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,
+        ".data/Demo/OxfordTownCenter.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,
         (new_width, new_height))
 
     darknet_image = darknet.make_image(new_width, new_height, 3)
